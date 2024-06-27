@@ -26,6 +26,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'  
+      - name: Navigate to project directory
+        run: cd /home/runner/work/Laboratorio-final/Laboratorio-final/asd/
       - name: Install dependencies with Yarn
         run: yarn install 
 
