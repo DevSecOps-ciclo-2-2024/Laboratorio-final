@@ -38,5 +38,7 @@ jobs:
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
-          TOKEN_GH: ${{ secrets.TOKEN_GH }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GH }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: ArielAndresMarihuenMatus_Laboratorio-final
+          SONAR_ORGANIZATION: devsecopsarielmarihuen
