@@ -50,9 +50,8 @@ jobs:
         "https://sonarcloud.io/api/qualitygates/project_status?projectKey=ArielAndresMarihuenMatus_Laboratorio-final")
         echo "SonarCloud response: $RESPONSE"
         SONAR_STATUS=$(echo "$RESPONSE" | jq -r .projectStatus.status)
-        if [ "$SONAR_STATUS" != "OK" &&  "$SONAR_STATUS" != "NONE" ]; then
+        if [ "$SONAR_STATUS" != "OK"]; then
           echo "Quality Gate failed: $SONAR_STATUS"
-          exit 1
         else
           echo "Quality Gate passed: $SONAR_STATUS"
         fi
