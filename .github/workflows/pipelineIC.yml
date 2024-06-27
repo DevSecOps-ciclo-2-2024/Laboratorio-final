@@ -57,7 +57,7 @@ jobs:
           echo "Quality Gate passed: $SONAR_STATUS"
         fi
       env:
-      GITHUB_TOKEN: ${{ secrets.TOKEN_GH }}
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      SONAR_PROJECT_KEY: ArielAndresMarihuenMatus_Laboratorio-final
-      SONAR_ORGANIZATION: DevSecOpsArielMarihuen
+        GITHUB_TOKEN: ${{ secrets.TOKEN_GH }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_PROJECT_KEY: ArielAndresMarihuenMatus_Laboratorio-final
+        SONAR_ORGANIZATION: DevSecOpsArielMarihuen
