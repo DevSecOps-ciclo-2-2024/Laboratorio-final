@@ -5,6 +5,7 @@ on:
       - feature-ariel-marihuen
 
 jobs:
+
   Build:
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +24,7 @@ jobs:
       run: ls -l
 
   sast:
+    needs: Build
     runs-on: ubuntu-latest
     
     steps:
