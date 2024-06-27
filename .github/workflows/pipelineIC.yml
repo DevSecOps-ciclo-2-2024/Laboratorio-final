@@ -82,6 +82,7 @@ jobs:
         SONAR_ORGANIZATION: DevSecOpsArielMarihuen
 
   SCA:
+    needs: SAST
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
