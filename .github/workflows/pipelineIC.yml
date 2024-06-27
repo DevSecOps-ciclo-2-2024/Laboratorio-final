@@ -18,7 +18,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.ref }}
+        token: ${{ secrets.TOKEN_GH }}
     - name: List directory contents
       run: ls -l
 
@@ -44,7 +44,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GH }}  
+          TOKEN_GH: ${{ secrets.TOKEN_GH }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
         with:
           args: >
@@ -65,5 +65,5 @@ jobs:
             echo "Quality Gate passed: $SONAR_STATUS"
           fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN_GH: ${{ secrets.TOKEN_GH }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
