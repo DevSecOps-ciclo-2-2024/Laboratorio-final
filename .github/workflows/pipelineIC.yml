@@ -45,4 +45,4 @@ jobs:
             -Dsonar.projectKey=ArielAndresMarihuenMatus_Laboratorio-final
             -Dsonar.organization=devsecopsarielmarihuen
             -Dsonar.sources=.
-            -Dsonar.exclusions=**/node_modules/**, **/dist/**
+            -Dsonar.exclusions=**/node_modules/**
