@@ -4,3 +4,5 @@ function executeCodeAfterDelay(code: string, delay: number) {
         eval(code); // Uso de eval dentro de setTimeout
     }, delay);
 }
+
+export {}
