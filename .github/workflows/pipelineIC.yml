@@ -40,3 +40,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT_KEY: ArielAndresMarihuenMatus_Laboratorio-final
           SONAR_ORGANIZATION: DevSecOpsArielMarihuen
+        with:
+          args: >
+            -Dsonar.projectKey=ArielAndresMarihuenMatus_Laboratorio-final
+            -Dsonar.organization=devsecopsarielmarihuen
+            -Dsonar.sources=.
+            -Dsonar.exclusions=**/node_modules/**, **/dist/**
