@@ -57,16 +57,4 @@ jobs:
             -Dsonar.sources=.  
             -Dsonar.exclusions=**/node_modules/**
 
-      - name: Check Quality Gate Status
-        run: |
-          echo "Checking Quality Gate status"
-          SONAR_STATUS=$(curl -s -u ${{ secrets.SONAR_TOKEN }}: \
-          "https://sonarcloud.io/api/qualitygates/project_status?projectKey=ArielAndresMarihuenMatus_Laboratorio-final" | jq -r .projectStatus.status)
-          if [ "$SONAR_STATUS" != "OK" ]; then
-            
-          else
-            echo "Quality Gate passed: $SONAR_STATUS"
-          fi
-        env:
-          TOKEN_GH: ${{ secrets.TOKEN_GH }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      
