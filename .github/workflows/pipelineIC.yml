@@ -76,3 +76,16 @@ jobs:
         env:
           TOKEN_GH: ${{ secrets.TOKEN_GH }} 
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
+      - name: Fail Pipeline on Vulnerabilities
+        run: |
+          VULNERABILITIES=$(curl -s -u ${{ secrets.SONAR_TOKEN }}: \
+          "https://sonarcloud.io/api/issues/search?componentKeys=ArielAndresMarihuenMatus_Laboratorio-final&types=VULNERABILITY&severities=CRITICAL,HIGH,MEDIUM" | jq -r '.total')
+          if [ "$VULNERABILITIES" -gt 0 ]; then
+            echo "Found $VULNERABILITIES vulnerabilities. Failing pipeline."
+            exit 1
+          else
+            echo "No vulnerabilities found."
+          fi
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
