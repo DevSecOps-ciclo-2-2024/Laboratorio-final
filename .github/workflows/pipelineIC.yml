@@ -32,6 +32,17 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '11'
+          
+      - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+      - name: Install dependencies with Yarn
+        run: yarn install
+
+      - name: Build project
+        run: yarn run build
 
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
