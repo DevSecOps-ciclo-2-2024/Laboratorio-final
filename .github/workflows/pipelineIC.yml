@@ -54,7 +54,8 @@ jobs:
           args: >
             -Dsonar.projectKey=ArielAndresMarihuenMatus_Laboratorio-final
             -Dsonar.organization=devsecopsarielmarihuen
-            -Dsonar.sources=.  
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.host.branch.name=feature-ariel-marihuen
             -Dsonar.exclusions=**/node_modules/**
 
       - name: Check Quality Gate Status
