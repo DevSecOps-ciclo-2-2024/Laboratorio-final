@@ -18,5 +18,43 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name : Log
-      run: ls -R
+  sast:
+    runs-on: ubuntu-latest
+    needs: Build
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GH }}  
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+        with:
+          args: >
+            -Dsonar.projectKey=ArielAndresMarihuenMatus_Laboratorio-final
+            -Dsonar.organization=devsecopsarielmarihuen
+            -Dsonar.sources=.  
+            -Dsonar.exclusions=**/node_modules/**
+
+      - name: Check Quality Gate Status
+        run: |
+          echo "Checking Quality Gate status"
+          SONAR_STATUS=$(curl -s -u ${{ secrets.SONAR_TOKEN }}: \
+          "https://sonarcloud.io/api/qualitygates/project_status?projectKey=ArielAndresMarihuenMatus_Laboratorio-final" | jq -r .projectStatus.status)
+          if [ "$SONAR_STATUS" != "OK" ]; then
+            echo "Quality Gate failed: $SONAR_STATUS"
+            exit 1
+          else
+            echo "Quality Gate passed: $SONAR_STATUS"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
