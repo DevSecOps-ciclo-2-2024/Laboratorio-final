@@ -31,7 +31,7 @@ jobs:
         run: cd /home/runner/work/Laboratorio-final/Laboratorio-final/
 
       - name: Install dependencies
-        run: npm install --prefix /home/runner/work/Laboratorio-final/
+        run: npm install
 
       - name: Build project
         run: npm run build
