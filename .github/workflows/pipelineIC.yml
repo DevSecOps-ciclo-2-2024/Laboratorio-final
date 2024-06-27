@@ -27,7 +27,8 @@ jobs:
         with:
           node-version: '20'  
       - name: Navigate to project directory
-        run: cd /home/runner/work/Laboratorio-final/Laboratorio-final/asd/
+        run: cd /home/runner/work/Laboratorio-final/Laboratorio-final/
+        
       - name: Install dependencies with Yarn
         run: yarn install 
 
