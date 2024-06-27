@@ -28,7 +28,7 @@ jobs:
           node-version: '20'  
           
       - name: Navigate to project directory
-        run: cd Laboratorio-final  
+        run: cd ./Laboratorio-final  
 
       - name: Install dependencies
         run: npm install
