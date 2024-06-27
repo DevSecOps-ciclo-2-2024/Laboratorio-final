@@ -23,7 +23,7 @@ jobs:
     - name: List directory contents 
       run: ls -l
 
-sast:
+  sast:
     needs: build
     runs-on: ubuntu-latest
     steps:
