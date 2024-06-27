@@ -74,5 +74,5 @@ jobs:
             echo "Quality Gate passed: $SONAR_STATUS"
           fi
         env:
-          TOKEN_GH: ${{ secrets.TOKEN_GH }}
+          TOKEN_GH: ${{ secrets.TOKEN_GH }} 
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
