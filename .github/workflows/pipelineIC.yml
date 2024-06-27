@@ -16,8 +16,9 @@ jobs:
         distribution: 'adopt'
   
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
       with:
+        clean: false
         ref: ${{ github.ref }}
 
   sast:
