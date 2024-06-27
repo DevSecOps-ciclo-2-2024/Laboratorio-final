@@ -6,7 +6,7 @@ on:
 
 jobs:
   Build:
-    runs: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
 
     - name: Set up JDK 17
