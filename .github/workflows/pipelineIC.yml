@@ -95,8 +95,8 @@ jobs:
         distribution: 'adopt'
         java-version: '11'
 
-    - name: Dependency-Check Action
-      uses: DependencyCheck/dependency-check-action@v2
+    - name: Dependency Check
+      uses: dependency-check/Dependency-Check-Action@1.1.0
       env:
         JAVA_HOME: /opt/jdk
       id: Depcheck
@@ -110,7 +110,7 @@ jobs:
           --enableRetired
 
     - name: Upload Test Result
-      uses: actions/upload-artifacts@master
+      uses: actions/upload-artifact@master
       with:
         name: Depcheck report
         path: ${{ github.workspace }}/report 
