@@ -26,6 +26,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'  
+          
+      - name: Navigate to project directory
+        run: cd Laboratorio-final  
+
       - name: Install dependencies
         run: npm install
 
