@@ -26,11 +26,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'  
-      - name: Navigate to project directory
-        run: ls -R /home/runner/work/Laboratorio-final/
 
       - name: Install dependencies with Yarn
         run: yarn install 
+
+      - name: Navigate to project directory
+        run: ls -R /home/runner/work/Laboratorio-final/Laboratorio-final/
+
 
       - name: Build project
         run: yarn run build 
