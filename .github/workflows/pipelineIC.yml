@@ -19,8 +19,6 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: ${{ github.ref }}
-    - name: Navigate to project directory
-        run: ls /home/runner/work/Laboratorio-final/Laboratorio-final
 
   sast:
     runs-on: ubuntu-latest
