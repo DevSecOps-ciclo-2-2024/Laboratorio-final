@@ -31,7 +31,7 @@ jobs:
         run: yarn install 
 
       - name: Navigate to project directory
-        run: ls -R /home/runner/work/Laboratorio-final/Laboratorio-final/
+        run: ls /home/runner/work/Laboratorio-final/Laboratorio-final
 
 
       - name: Build project
