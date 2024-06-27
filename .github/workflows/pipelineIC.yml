@@ -16,10 +16,11 @@ jobs:
         distribution: 'adopt'
   
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
-        clean: false
         ref: ${{ github.ref }}
+    - name: Navigate to project directory
+        run: ls /home/runner/work/Laboratorio-final/Laboratorio-final
 
   sast:
     runs-on: ubuntu-latest
