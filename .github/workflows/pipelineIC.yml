@@ -22,70 +22,39 @@ jobs:
     - name: List directory contents 
       run: ls -l
 
-  sast:
-    runs-on: ubuntu-latest
+   Sast:
     needs: Build
+    runs-on: ubuntu-latest
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      #with:
+        #fetch-depth: 0
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
 
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Install depencies
+      run: npm install
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'  
-
-      - name: Install dependencies with Yarn
-        run: yarn install 
-
-      - name: Navigate to project directory
-        run: ls /home/runner/work/Laboratorio-final/Laboratorio-final
-
-
-      - name: Build project
-        run: yarn run build 
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
-        env:
-          TOKEN_GH: ${{ secrets.TOKEN_GH }}  
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
-        with:
-          args: >
-            -Dsonar.projectKey=ArielAndresMarihuenMatus_Laboratorio-final
-            -Dsonar.organization=devsecopsarielmarihuen
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.host.branch.name=feature-ariel-marihuen
-            -Dsonar.exclusions=**/node_modules/**
-
-      - name: Check Quality Gate Status
-        run: |
-          echo "Checking Quality Gate status"
-          RESPONSE=$(curl -s -u ${{ secrets.SONAR_TOKEN }}: \
-          "https://sonarcloud.io/api/qualitygates/project_status?projectKey=ArielAndresMarihuenMatus_Laboratorio-final")
-          echo "SonarCloud response: $RESPONSE"
-          SONAR_STATUS=$(echo "$RESPONSE" | jq -r .projectStatus.status)
-          if [ "$SONAR_STATUS" == "NONE" ]; then
-            echo "Quality Gate status is NONE. This may be the first analysis. Proceeding without failure."
-          elif [ "$SONAR_STATUS" != "OK" ]; then
-            echo "Quality Gate failed: $SONAR_STATUS"
-            exit 1
-          else
-            echo "Quality Gate passed: $SONAR_STATUS"
-          fi
-        env:
-          TOKEN_GH: ${{ secrets.TOKEN_GH }} 
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          
-      - name: Fail Pipeline on Vulnerabilities
-        run: |
-          VULNERABILITIES=$(curl -s -u ${{ secrets.SONAR_TOKEN }}: \
-          "https://sonarcloud.io/api/issues/search?componentKeys=ArielAndresMarihuenMatus_Laboratorio-final&types=VULNERABILITY&severities=CRITICAL,HIGH,MEDIUM" | jq -r '.total')
-          if [ "$VULNERABILITIES" -gt 0 ]; then
-            echo "Found $VULNERABILITIES vulnerabilities. Failing pipeline."
-            exit 1
-          else
-            echo "No vulnerabilities found."
-          fi
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: Build
+      run: npm run build
+      
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4.2.1
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Analisis SonarCloud
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        TOKEN_GH: ${{ secrets.TOKEN_GH }} 
+        SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
+        
+    - name: SonarQube Quality Gate Check
+      env:
+        SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
+      uses: SonarSource/sonarqube-quality-gate-action@master
