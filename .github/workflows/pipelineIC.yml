@@ -176,7 +176,7 @@ jobs:
         with:
           image-ref: 'arielandresmarihuenmatus/devsecops:latest'
           format: 'table'
-          vuln-type: 'all'
+          vuln-type: 'os,library'
           severity: 'HIGH,CRITICAL'
 
 
