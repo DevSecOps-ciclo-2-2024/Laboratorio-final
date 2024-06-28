@@ -156,6 +156,12 @@ jobs:
     - name : Pull docker img
       run: |
         docker pull arielandresmarihuenmatus/devsecops:latest
+  
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'devsecops-latest'
+        format: 'table'
 
 
 
