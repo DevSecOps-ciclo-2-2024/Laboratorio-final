@@ -172,19 +172,17 @@ jobs:
     needs: DockerScan
     runs-on: self-hosted
     steps: 
-    - name: despliegue
-      run: |
-        docker run -d -p 8080:80 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
-    - name: sleep
-      run: |
-        sleep 10
+    # - name: despliegue
+    #   run: |
+    #     docker run -d -p 8080:80 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
+    # - name: sleep
+    #   run: |
+    #     sleep 10
     - name: OWASP ZAP SCAN
-      run: |
-        # Crea un archivo vacío como alternativa a touch
-        echo $null >> touchfile
-        # Ejecuta el escaneo de OWASP ZAP
-        docker run --rm -v "$(pwd):/zap/wrk" -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8080
-      working-directory: ${{ github.workspace }}
+      uses: zaproxy/action-baseline@v0.11.0
+      with:
+        target: 'http://localhost:8080' 
+
 
 
 
