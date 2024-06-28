@@ -129,6 +129,12 @@ jobs:
     - name: Checkout code 
       uses: actions/checkout@v2
 
+    - name: Install dependencies with Yarn 
+      run: yarn install
+
+    - name: Build project
+      run: yarn run build
+      
     - name: Docker login
       uses: docker/login-action@v3.0.0
       with:
