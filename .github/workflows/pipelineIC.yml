@@ -178,7 +178,7 @@ jobs:
     - name: sleep
       run: |
         sleep 3
-    - name: OWASP ZAP SCAN 
+    - name: OWASP ZAP SCAN
       uses: zaproxy/action-baseline@v0.11.0
       with:
         target: 'http://localhost:8080'
