@@ -174,7 +174,7 @@ jobs:
     steps: 
     - name: despliegue
       run: |
-        docker run -p 8080:80 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
+        docker run -d -p 8080:80 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
     - name: sleep
       run: |
         sleep 3
