@@ -149,13 +149,13 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build --tag arielandresmarihuenmatus/devsecops:latest .
+        docker build --build-arg TMDB_V3_API_KEY=0a5c76f39b37918e45f6a8e56b8509c5 --tag arielandresmarihuenmatus/devsecops:latest .
 
     - name: Push Docker image
       run: |
         docker push arielandresmarihuenmatus/devsecops:latest
 
-  DockerScanWithDockerHub:
+  DockerScan:
     needs: DockerBuild
     runs-on: ubuntu-latest
     steps:
