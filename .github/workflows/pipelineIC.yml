@@ -141,7 +141,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker push arielandresmarihuenmatus/devsecops:latest .
+        docker push arielandresmarihuenmatus/devsecops:latest
 
   DockerScan:
     needs: DockerBuild
@@ -156,6 +156,6 @@ jobs:
     - name : Pull docker img
       run: |
         docker pull arielandresmarihuenmatus/devsecops:latest
-        
+
 
 
