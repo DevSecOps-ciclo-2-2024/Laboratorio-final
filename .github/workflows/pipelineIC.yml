@@ -182,7 +182,7 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f ./Kubernetes/deployment.yml
+          kubectl apply -f ./Kubernetes/deployment.yml --validate=false
 
 
 
