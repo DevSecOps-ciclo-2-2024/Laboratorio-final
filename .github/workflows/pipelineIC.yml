@@ -175,6 +175,13 @@ jobs:
     - name: despliegue
       run: |
         docker run -p 8080:80 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
+    - name: sleep
+      run: |
+        sleep 3
+    - name: OWASP ZAP SCAN
+      uses: zaproxy/action-baseline@v0.11.0
+      with:
+        target: 'http://localhost:8080'
 
 
 
