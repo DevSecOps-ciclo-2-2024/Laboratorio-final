@@ -23,9 +23,7 @@
     "slick-carousel": "^1.8.1",
     "video.js": "^8.3.0",
     "videojs-youtube": "^3.0.1",
-    "vite-tsconfig-paths": "^3.5.2",
-    "lodash": "4.17.15",
-    "serialize-javascript": "2.1.2"
+    "vite-tsconfig-paths": "^3.5.2"
 
   },
   "devDependencies": {
