@@ -174,7 +174,13 @@ jobs:
     steps: 
       - name: Clonacion de codigo
         uses: actions/checkout@v4
-      - name: Despliegue
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
+
+      - name: Deploy to Kubernetes
         run: |
           kubectl apply -f ./Kubernetes/deployment.yml
 
