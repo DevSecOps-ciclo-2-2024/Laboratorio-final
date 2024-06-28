@@ -156,9 +156,9 @@ jobs:
         docker push arielandresmarihuenmatus/devsecops:latest
 
   DockerScanWithDockerHub:
-  needs: DockerBuild
-  runs-on: ubuntu-latest
-  steps:
+    needs: DockerBuild
+    runs-on: ubuntu-latest
+    steps:
     - name: Docker Login
       uses: docker/login-action@v3.0.0
       with:
