@@ -175,6 +175,9 @@ jobs:
     - name: despliegue
       run: |
         docker run -p 8085:8085 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
+    - name: sleep
+      run: |
+        sleep3
 
 
 
