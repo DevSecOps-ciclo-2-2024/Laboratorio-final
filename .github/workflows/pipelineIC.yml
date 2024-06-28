@@ -172,17 +172,9 @@ jobs:
     needs: DockerScan
     runs-on: self-hosted
     steps: 
-      - name: Clonacion de codigo
-        uses: actions/checkout@v4
-
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v1
-        with:
-          version: 'latest'
-
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl apply -f ./Kubernetes/deployment.yml --validate=false
+    - name: despliegue
+      run: |
+        docker run -p 8085:8085 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
 
 
 
