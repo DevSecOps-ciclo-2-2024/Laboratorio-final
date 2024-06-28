@@ -171,13 +171,19 @@ jobs:
   Deploy:
     needs: DockerScan
     runs-on: self-hosted
-    steps:
-      - name: Despliegue
-        run: wsl docker run -d -p 8080:80 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
-      - name: Esperar
-        run: wsl sleep 10
-      - name: OWASP ZAP SCAN
-        run: wsl zaproxy/action-baseline@v0.11.0 --target 'http://localhost:8080'
+    steps: 
+    - name: despliegue
+      run: |
+        docker run -d -p 8080:80 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
+    - name: sleep
+      run: |
+        sleep 10
+    - name: Crear archivo temporal
+      run: docker run --rm -v /tmp:/tmp ubuntu touch /tmp/zap_touch.tmp
+    - name: OWASP ZAP SCAN
+      uses: zaproxy/action-baseline@v0.11.0
+      with:
+        target: 'http://localhost:8080' 
 
 
 
