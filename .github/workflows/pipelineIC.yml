@@ -170,7 +170,7 @@ jobs:
 
   Deploy:
     needs: DockerScan
-    runs-on: ubuntu-latest
+    runs-on: self-hosted 
     steps: 
     # - name: despliegue
     #   run: |
