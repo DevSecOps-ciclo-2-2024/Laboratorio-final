@@ -203,8 +203,8 @@ jobs:
     - name: Check for High Severity Vulnerabilities
       run: |
         # Check if ZAP found any high severity issues
-        if grep -q 'High|medium' zap_report.html; then
-          echo "High severity vulnerabilities found in ZAP scan."
+        if grep -q 'High|Medium' zap_report.html; then
+          echo "High or Medium severity vulnerabilities found in ZAP scan."
           exit 1
         else
           echo "No high severity vulnerabilities found in ZAP scan."
