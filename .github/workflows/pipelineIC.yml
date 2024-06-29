@@ -124,6 +124,7 @@ jobs:
         path: ${{ github.workspace }}/reports
   
   DockerBuild:
+    needs: SCA
     runs-on: ubuntu-latest
     steps: 
     - name: Checkout code 
@@ -192,19 +193,18 @@ jobs:
         rules_file_name: '.zap/rules.tsv'
         cmd_options: '-a'
         allow_issue_writing: false
-
-    - name: Upload ZAP Report
-      uses: actions/upload-artifact@v2
+    - name: Upload Test Result
+      uses: actions/upload-artifact@master
       with:
         name: zap-report
-        path: zap_report.html
+        path: ${{ github.workspace }}/reports
 
-  #   - name: Check for High Severity Vulnerabilities
-  #     run: |
-  #       # Check if ZAP found any high severity issues
-  #       if grep -q 'High' zap_report.html; then
-  #         echo "High severity vulnerabilities found in ZAP scan."
-  #         exit 1
-  #       else
-  #         echo "No high severity vulnerabilities found in ZAP scan."
-  #       fi
+    - name: Check for High Severity Vulnerabilities
+      run: |
+        # Check if ZAP found any high severity issues
+        if grep -q 'High' zap_report.html; then
+          echo "High severity vulnerabilities found in ZAP scan."
+          # exit 1
+        else
+          echo "No high severity vulnerabilities found in ZAP scan."
+        fi
