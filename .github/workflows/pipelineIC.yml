@@ -169,7 +169,7 @@ jobs:
         severity: 'CRITICAL,HIGH,MEDIUM,LOW' 
 
   DAST:
-    needs: deploy
+    needs: DockerScan
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
