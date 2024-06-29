@@ -114,7 +114,7 @@ jobs:
         REPORT_FILE=$(find ${{ github.workspace }}/reports -name 'dependency-check-report.html')
         if grep -q "Critical" "$REPORT_FILE" || grep -q "High" "$REPORT_FILE" || grep -q "Medium" "$REPORT_FILE"; then
           echo "Found vulnerabilities in dependencies."
-          # exit 1
+          exit 1
         else
           echo "No vulnerabilities found."
         fi
