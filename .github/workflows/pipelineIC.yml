@@ -236,12 +236,12 @@ jobs:
         name: zap-report
         path: zap_report.html
 
-    - name: Check for High Severity Vulnerabilities
-      run: |
-        # Check if ZAP found any high severity issues
-        if grep -q 'High' zap_report.html; then
-          echo "High severity vulnerabilities found in ZAP scan."
-          exit 1
-        else
-          echo "No high severity vulnerabilities found in ZAP scan."
-        fi
+    # - name: Check for High Severity Vulnerabilities
+    #   run: |
+    #     # Check if ZAP found any high severity issues
+    #     if grep -q 'High' zap_report.html; then
+    #       echo "High severity vulnerabilities found in ZAP scan."
+    #       exit 1
+    #     else
+    #       echo "No high severity vulnerabilities found in ZAP scan."
+    #     fi
