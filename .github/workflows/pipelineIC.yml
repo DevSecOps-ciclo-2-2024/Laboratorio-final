@@ -166,22 +166,22 @@ jobs:
         exit-code: '1'
         ignore-unfixed: true
         vuln-type: 'os,library'
-        severity: 'CRITICAL,HIGH,MEDIUM,LOW'
+        severity: 'CRITICAL,HIGH,MEDIUM,LOW' 
 
-  Deploy:
-    needs: DockerScan
-    runs-on: self-hosted 
-    steps: 
-    # - name: despliegue
-    #   run: |
-    #     docker run -d -p 8080:80 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
-    # - name: sleep
-    #   run: |
-    #     sleep 10
-    - name: OWASP ZAP SCAN
-      uses: zaproxy/action-baseline@v0.11.0
-      with:
-        target: 'http://localhost:8080' 
+  # Deploy:
+  #   needs: DockerScan
+  #   runs-on: self-hosted 
+  #   steps: 
+  #   # - name: despliegue
+  #   #   run: |
+  #   #     docker run -d -p 8080:80 --name devsecopsdeploy arielandresmarihuenmatus/devsecops:latest
+  #   # - name: sleep
+  #   #   run: |
+  #   #     sleep 10
+  #   - name: OWASP ZAP SCAN
+  #     uses: zaproxy/action-baseline@v0.11.0
+  #     with:
+  #       target: 'http://localhost:8080' 
 
 
 
