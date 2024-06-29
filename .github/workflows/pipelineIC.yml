@@ -229,6 +229,8 @@ jobs:
       run: |
         docker pull ghcr.io/zaproxy/zaproxy:stable -q
         docker run --user root -v ${{ github.workspace }}:/zap/wrk/:rw --network=host ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:8080 -J zap_report.json -w zap_report.md -r zap_report.html -a
+      env:
+        GITHUB_WORKSPACE: ${{ github.workspace }}
 
     - name: Upload ZAP Report
       uses: actions/upload-artifact@v2
