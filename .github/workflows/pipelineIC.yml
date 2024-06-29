@@ -165,7 +165,7 @@ jobs:
       with:
         image-ref: 'arielandresmarihuenmatus/devsecops:latest'
         format: 'table'
-        exit-code: 1
+        # exit-code: 1
         ignore-unfixed: true
         vuln-type: 'os,library'
         severity: 'CRITICAL,HIGH,MEDIUM,LOW' 
@@ -205,7 +205,7 @@ jobs:
         # Check if ZAP found any high severity issues
         if grep -q 'High' zap_report.html; then
           echo "High severity vulnerabilities found in ZAP scan."
-          # exit 1
+          exit 1
         else
           echo "No high severity vulnerabilities found in ZAP scan."
         fi
